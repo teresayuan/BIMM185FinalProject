@@ -23,7 +23,7 @@ mkdir $DIR/working_test/fastqc
 
 # for f in $(ls $DIR/data/*.fastq); do echo $f; fastqc -o $DIR/working_test/fastqc $f ; done
 
-#for f in $(ls $DIR/data/*.fastq); do echo $f; python modfastq.py $f ${f/data/working_test}; done
+for f in $(ls $DIR/data/*.fastq); do echo $f; python modfastq.py $f ${f/data/working_test}; done
 
 
 
