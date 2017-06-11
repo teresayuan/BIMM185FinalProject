@@ -20,4 +20,8 @@ echo "hello world"
 
 mkdir $DIR/working_test
 
-for f in $(ls $DIR/data/*.fastq); do echo $f; python modfastq.py $f ${f/data/working_test}; done
+#for f in $(ls $DIR/data/*.fastq); do echo $f; python modfastq.py $f ${f/data/working_test}; done
+
+for f in $(ls $DIR/reference/*.fna); do echo $f; prefix=${f/reference/working_test}; bwa index -p ${prefix%%.fna} $f; done
+#bwa index -p $f{${f/reference/working_test}%%.fna}; done
+
