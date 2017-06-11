@@ -19,4 +19,4 @@ fi
 echo "hello world"
 
 
-for f in $(ls $DIR/data/*.fastq); do echo $f; python modfastq.py $f $DIR/working/${f%%.fastq}_slash.fastq; done
+for f in $(ls $DIR/data/*.fastq); do echo $f; python modfastq.py $f ${f/data/working}; done
