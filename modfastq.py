@@ -1,5 +1,12 @@
-f = raw_input('name of file or path: \n')
-o = raw_input('name of output file name: \n')
+# f = raw_input('name of file or path: \n')
+# o = raw_input('name of output file name: \n')
+
+# modfastq.py inputfile outputfile
+
+import sys
+
+f = sys.argv[1]
+o = sys.argv[2]
 
 lines = [line.rstrip('\r\n') for line in open(f)]
 
