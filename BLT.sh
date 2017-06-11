@@ -18,5 +18,6 @@ fi
 
 echo "hello world"
 
+mkdir $DIR/working_test
 
 for f in $(ls $DIR/data/*.fastq); do echo $f; python modfastq.py $f ${f/data/working_test}; done
