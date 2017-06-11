@@ -5,7 +5,7 @@
 
 DIR=/home/bimm185
 
-if [ "$1" == "-h" ] || [ $# != 5 ] 
+if [ "$1" == "-h" ]
 then
 	if [ "$1" != "-h" ] 
 	then
