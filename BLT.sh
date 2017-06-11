@@ -29,4 +29,16 @@ for f in $(ls $DIR/data/*.fastq); do echo $f; fastqc -o $DIR/working_test/fastqc
 for f in $(ls $DIR/reference/*.fna); do echo $f; prefix=${f/reference/working_test}; bwa index -p ${prefix%%.fna} $f; done
 #bwa index -p $f{${f/reference/working_test}%%.fna}; done
 
- # bwa mem $DIR/working_text/GCF_000006945.2_ASM694v2_genomic UC8_1.fastq
+bwa mem $DIR/working_test/GCF_000006945.2_ASM694v2_genomic $DIR/working_test/UC8_1.fastq $DIR/working_test/UC_2.fastq > $DIR/working_test/UC8.sam
+
+samtools view -o $DIR/working_test/UC8.bam -b $DIR/working_test/UC8.sam
+
+samtools flagstat $DIR/working_test/UC8.bam > $DIR/working_test/UC8_align_stats.txt
+
+samtools sort $DIR/working_test/UC8.bam -o $DIR/working_test/UC8_sorted.bam 
+
+samtools mpileup -f $DIR/reference/GCF_000006945.2_ASM694v2_genomic.fna $DIR/working_test/UC8_sorted.bam > $DIR/working_test/UC8.mpileup
+
+java -Xmx4g -jar ~/VarScan.v2.4.3.jar mpileup2snp $DIR/working_test/UC8.mpileup --min-var-freq 0.7 --variants --output-vcf 1 > $DIR/working_test/UC8.vcf
+
+
