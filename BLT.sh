@@ -31,16 +31,22 @@ for f in $(ls $DIR/data/*.fastq); do echo $f; python $DIR/BIMM185FinalProject/mo
 cp $DIR/reference/GCF_000006945.2_ASM694v2_genomic.fna $DIR/working_test/.
 for f in $(ls $DIR/working_test/*.fna); do echo $f; bwa index $f; done
 
-bwa mem $DIR/working_test/GCF_000006945.2_ASM694v2_genomic.fna $DIR/working_test/UC8_1.fastq $DIR/working_test/UC_2.fastq > $DIR/working_test/UC8.sam
+# UC8
+bwa mem $DIR/working_test/GCF_000006945.2_ASM694v2_genomic.fna $DIR/working_test/UC8_1.fastq $DIR/working_test/UC8_2.fastq > $DIR/working_test/UC8.sam
+bwa mem $DIR/working_test/GCF_000006945.2_ASM694v2_genomic.fna $DIR/working_test/UC9_1.fastq $DIR/working_test/UC9_2.fastq > $DIR/working_test/UC9.sam
 
 samtools view -o $DIR/working_test/UC8.bam -b $DIR/working_test/UC8.sam
+samtools view -o $DIR/working_test/UC9.bam -b $DIR/working_test/UC9.sam
 
 samtools flagstat $DIR/working_test/UC8.bam > $DIR/working_test/UC8_align_stats.txt
+samtools flagstat $DIR/working_test/UC9.bam > $DIR/working_test/UC9_align_stats.txt
 
 samtools sort $DIR/working_test/UC8.bam -o $DIR/working_test/UC8_sorted.bam 
+samtools sort $DIR/working_test/UC9.bam -o $DIR/working_test/UC9_sorted.bam 
 
 samtools mpileup -f $DIR/working_test/GCF_000006945.2_ASM694v2_genomic.fna $DIR/working_test/UC8_sorted.bam > $DIR/working_test/UC8.mpileup
+samtools mpileup -f $DIR/working_test/GCF_000006945.2_ASM694v2_genomic.fna $DIR/working_test/UC9_sorted.bam > $DIR/working_test/UC9.mpileup
 
 java -Xmx4g -jar ~/VarScan.v2.4.3.jar mpileup2snp $DIR/working_test/UC8.mpileup --min-var-freq 0.7 --variants --output-vcf 1 > $DIR/working_test/UC8.vcf
-
+java -Xmx4g -jar ~/VarScan.v2.4.3.jar mpileup2snp $DIR/working_test/UC9.mpileup --min-var-freq 0.7 --variants --output-vcf 1 > $DIR/working_test/UC8.vcf
 
