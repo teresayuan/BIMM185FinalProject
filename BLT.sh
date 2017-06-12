@@ -48,5 +48,5 @@ samtools mpileup -f $DIR/working_test/GCF_000006945.2_ASM694v2_genomic.fna $DIR/
 samtools mpileup -f $DIR/working_test/GCF_000006945.2_ASM694v2_genomic.fna $DIR/working_test/UC9_sorted.bam > $DIR/working_test/UC9.mpileup
 
 java -Xmx4g -jar ~/VarScan.v2.4.3.jar mpileup2snp $DIR/working_test/UC8.mpileup --min-var-freq 0.7 --variants --output-vcf 1 > $DIR/working_test/UC8.vcf
-java -Xmx4g -jar ~/VarScan.v2.4.3.jar mpileup2snp $DIR/working_test/UC9.mpileup --min-var-freq 0.7 --variants --output-vcf 1 > $DIR/working_test/UC8.vcf
+java -Xmx4g -jar ~/VarScan.v2.4.3.jar mpileup2snp $DIR/working_test/UC9.mpileup --min-var-freq 0.7 --variants --output-vcf 1 > $DIR/working_test/UC9.vcf
 
