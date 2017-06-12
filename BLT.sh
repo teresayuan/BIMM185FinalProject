@@ -5,16 +5,16 @@
 
 DIR=/home/bimm185
 
-if [ "$1" == "-h" ]
-then
-	if [ "$1" != "-h" ] 
-	then
-		echo "wrong number of files"
-	fi
-	echo "scriptname reference sample1forward sample1reverse sample2forward sample2reverse"
+# if [ "$1" == "-h" ]
+# then
+# 	if [ "$1" != "-h" ] 
+# 	then
+# 		echo "wrong number of files"
+# 	fi
+# 	echo "blt reference sample1forward sample1reverse sample2forward sample2reverse"
 
-	exit 1
-fi
+# 	exit 1
+# fi
 
 echo "hello world"
 
