@@ -13,7 +13,7 @@ then
 	then
 		echo "wrong number of files"
 	fi
-	echo "blt.sh reference sample1forward sample1reverse sample2forward sample2reverse"
+	echo "BLT.sh reference sample1forward sample1reverse sample2forward sample2reverse"
 
 	exit 1
 fi
