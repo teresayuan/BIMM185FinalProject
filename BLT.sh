@@ -3,20 +3,24 @@
 # 1 --> reference
 # 2 --> 
 
+# Set working directory
 DIR=/home/bimm185
 
-# if [ "$1" == "-h" ]
-# then
-# 	if [ "$1" != "-h" ] 
-# 	then
-# 		echo "wrong number of files"
-# 	fi
-# 	echo "blt reference sample1forward sample1reverse sample2forward sample2reverse"
+# Input argument parsing
+if [ $1 = "-h" ]
+then
+    echo "USAGE: BLT reference sample1forward sample1reverse sample2forward sample2reverse"
 
-# 	exit 1
-# fi
+    exit 1
+fi
 
-echo "hello world"
+if [ $# != 5 ] 
+then
+    echo "wrong number of files"
+    echo "USAGE: BLT reference sample1forward sample1reverse sample2forward sample2reverse"
+
+    exit 1
+fi
 
 mkdir $DIR/working_test
 mkdir $DIR/working_test/fastqc
