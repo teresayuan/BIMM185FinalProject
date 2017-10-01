@@ -3,7 +3,7 @@
 BLT.sh is a bash script to automate alignment and variant calling of two 
 samples to a reference genome. 
 
-###Usage
+### Usage
 To run the pipeline, run the command: 
 
 ```sh
