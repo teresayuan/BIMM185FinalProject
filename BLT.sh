@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Input argument parsing
-if [ $1 = "-h" ]
+if [ "$1" = "-h" ]
 then
     echo "USAGE: BLT.sh reference.fasta data_dir sample1root sample2root"
 
@@ -47,8 +47,23 @@ pushd $HOMEDIR/working/
 bwa index $REFERENCE
 
 echo "Align using bwa mem..."
-bwa mem $REFERENCE ${SAMPLE1}_1.fastq ${SAMPLE1}_2.fastq > ${SAMPLE1}.sam
-bwa mem $REFERENCE ${SAMPLE2}_1.fastq ${SAMPLE2}_2.fastq > ${SAMPLE2}.sam
+if [ -e  ${SAMPLE1}_1.fastq ] && [ -e ${SAMPLE1}_2.fastq ]
+then
+	echo 'YAY paired end sample1'
+	bwa mem $REFERENCE ${SAMPLE1}_1.fastq ${SAMPLE1}_2.fastq > ${SAMPLE1}.sam
+else
+	bwa mem $REFERENCE ${SAMPLE1}.fastq ${SAMPLE1}.fastq > ${SAMPLE1}.sam
+fi
+
+if [ -e  ${SAMPLE2}_1.fastq ] && [ -e ${SAMPLE2}_2.fastq ]
+then
+	
+	echo 'YAY paired end sample2'
+
+	bwa mem $REFERENCE ${SAMPLE2}_1.fastq ${SAMPLE2}_2.fastq > ${SAMPLE2}.sam
+else
+	bwa mem $REFERENCE ${SAMPLE2}.fastq ${SAMPLE2}.fastq > ${SAMPLE2}.sam
+fi
 
 echo "Convert to bam..."
 samtools view -o ${SAMPLE1}.bam -b ${SAMPLE1}.sam
